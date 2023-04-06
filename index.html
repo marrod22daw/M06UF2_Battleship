@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Juego de Hundir la Flota</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <h1>Juego de Hundir la Flota</h1>
+    <div class="tables-container">
+        <div>
+            <p>Tabla del jugador:</p>
+            <table class="board">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <script>
+                            const cols = 10;
+                            const colNames = "ABCDEFGHIJ";
+                            for (let i = 0; i < cols; i++) {
+                                document.write(`<th>${colNames[i]}</th>`);
+                            }
+                        </script>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        const rows = 10;
+                        for (let i = 1; i <= rows; i++) {
+                            document.write(`<tr><th>${i}</th>`);
+                            for (let j = 0; j < cols; j++) {
+                                document.write(`<td class="cell"></td>`);
+                            }
+                            document.write("</tr>");
+                        }
+                    </script>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p>Tabla de la máquina:</p>
+            <table class="board">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <script>
+                            for (let i = 0; i < cols; i++) {
+                                document.write(`<th>${colNames[i]}</th>`);
+                            }
+                        </script>
+                    </tr>
+                </thead>
+                <tbody>
+                    <script>
+                        for (let i = 1; i <= rows; i++) {
+                            document.write(`<tr><th>${i}</th>`);
+                            for (let j = 0; j < cols; j++) {
+                                document.write(`<td class="cell"></td>`);
+                            }
+                            document.write("</r>");
+                        }
+                    </script>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
