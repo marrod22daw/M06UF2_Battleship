@@ -1,5 +1,5 @@
 function dragdrop() {
-    const barcos = document.querySelectorAll('.barco');
+    const barcos = document.querySelectorAll('.barco5, .barco4, .barco3, .barco2');
 
 let barcoSeleccionado = null;
 
