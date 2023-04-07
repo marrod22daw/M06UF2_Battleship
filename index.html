@@ -39,19 +39,19 @@
                 </tbody>
             </table>
 
-            <td><img class="barco" src="Media/Portaaviones.png"></td> <br>
+            <td><img id="portaaviones" class="barco" src="Media/Portaaviones.png" draggable="true"></td> <br>
 
-            <td><img class="barco" src="Media/Battleship.png"></td>
-            <td><img class="barco" src="Media/Battleship.png"></td> <br>
+            <td><img id="battleship1" class="barco" src="Media/Battleship.png" draggable="true"></td>
+            <td><img id="battleship2" class="barco" src="Media/Battleship.png" draggable="true"></td> <br>
 
-            <td><img class="barco" src="Media/Destroyer.png"></td>
-            <td><img class="barco" src="Media/Destroyer.png"></td>
-            <td><img class="barco" src="Media/Destroyer.png"></td> <br>
+            <td><img id="destroyer1" class="barco" src="Media/Destroyer.png" draggable="true"></td>
+            <td><img id="destroyer2" class="barco" src="Media/Destroyer.png" draggable="true"></td>
+            <td><img id="destroyer3" class="barco" src="Media/Destroyer.png" draggable="true"></td> <br>
 
-            <td><img class="barco" src="Media/Barca.png"></td>
-            <td><img class="barco" src="Media/Barca.png"></td>
-            <td><img class="barco" src="Media/Barca.png"></td>
-            <td><img class="barco" src="Media/Barca.png"></td> <br>
+            <td><img id="barca1" class="barco" src="Media/Barca.png" draggable="true"></td>
+            <td><img id="barca2" class="barco" src="Media/Barca.png" draggable="true"></td>
+            <td><img id="barca3" class="barco" src="Media/Barca.png" draggable="true"></td>
+            <td><img id="barca4" class="barco" src="Media/Barca.png" draggable="true"></td> <br>
         </div>
         <div>
             <p>Tabla de la máquina:</p>
@@ -78,21 +78,54 @@
                     </script>
                 </tbody>
             </table>
-            <td><img class="barco" src="Media/Portaaviones.png" tamaño="5"></td> <br>
+            <td><img id="portaaviones" class="barco" src="Media/Portaaviones.png" draggable="true"></td> <br>
 
-            <td><img class="barco" src="Media/Battleship.png" tamaño="4"></td>
-            <td><img class="barco" src="Media/Battleship.png" tamaño="4"></td> <br>
+            <td><img id="battleship1" class="barco" src="Media/Battleship.png" draggable="true"></td>
+            <td><img id="battleship2" class="barco" src="Media/Battleship.png" draggable="true"></td> <br>
 
-            <td><img class="barco" src="Media/Destroyer.png" tamaño="3"></td>
-            <td><img class="barco" src="Media/Destroyer.png" tamaño="3"></td>
-            <td><img class="barco" src="Media/Destroyer.png" tamaño="3"></td> <br>
+            <td><img id="destroyer1" class="barco" src="Media/Destroyer.png" draggable="true"></td>
+            <td><img id="destroyer2" class="barco" src="Media/Destroyer.png" draggable="true"></td>
+            <td><img id="destroyer3" class="barco" src="Media/Destroyer.png" draggable="true"></td> <br>
 
-            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td>
-            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td>
-            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td>
-            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td> <br>
+            <td><img id="barca1" class="barco" src="Media/Barca.png" draggable="true"></td>
+            <td><img id="barca2" class="barco" src="Media/Barca.png" draggable="true"></td>
+            <td><img id="barca3" class="barco" src="Media/Barca.png" draggable="true"></td>
+            <td><img id="barca4" class="barco" src="Media/Barca.png" draggable="true"></td> <br>
         </div>
     </div>
+    <script>
+        const draggables = document.querySelectorAll('.barco');
+
+
+        draggables.forEach(draggable => {
+            draggable.addEventListener('dragstart', () => {
+
+                event.dataTransfer.setData('text/plain', draggable.id);
+            });
+        });
+
+
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => {
+            cell.addEventListener('dragover', event => {
+                event.preventDefault();
+            });
+        });
+
+
+        cells.forEach(cell => {
+            cell.addEventListener('drop', event => {
+
+                const id = event.dataTransfer.getData('text');
+
+
+                const draggable = document.getElementById(id);
+
+
+                event.target.appendChild(draggable);
+            });
+        });
+    </script>
 
 
 </body>

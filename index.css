@@ -47,7 +47,40 @@ h1 {
     margin-top: 50px;
 }
 
-.tables-container>div {
+.tables-container > div {
     margin-right: 20px;
 }
 
+.ship-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Agregar reglas CSS para habilitar el arrastrar y soltar */
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.drag-container {
+    width: 50%;
+    height: 50%;
+    background-color: #fff;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    border: 2px solid #ccc;
+    z-index: 9999;
+}
+
+.drop-container {
+    width: 50%;
+    height: 50%;
+    background-color: #e6e6e6;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    border: 2px dashed black;
+    z-index: 9999;
+}
