@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Juego de Hundir la Flota</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="battleship.css">
+    <script src="drag&drop.js"></script>
 </head>
 
 <body>
@@ -93,41 +94,7 @@
             <td><img id="barca4" class="barco" src="Media/Barca.png" draggable="true"></td> <br>
         </div>
     </div>
-    <script>
-        const draggables = document.querySelectorAll('.barco');
-
-
-        draggables.forEach(draggable => {
-            draggable.addEventListener('dragstart', () => {
-
-                event.dataTransfer.setData('text/plain', draggable.id);
-            });
-        });
-
-
-        const cells = document.querySelectorAll('.cell');
-        cells.forEach(cell => {
-            cell.addEventListener('dragover', event => {
-                event.preventDefault();
-            });
-        });
-
-
-        cells.forEach(cell => {
-            cell.addEventListener('drop', event => {
-
-                const id = event.dataTransfer.getData('text');
-
-
-                const draggable = document.getElementById(id);
-
-
-                event.target.appendChild(draggable);
-            });
-        });
-    </script>
-
-
+ 
 </body>
 
 </html>
