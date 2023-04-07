@@ -1,35 +1,40 @@
 function dragdrop() {
-    const draggables = document.querySelectorAll('.barco');
+    const barcos = document.querySelectorAll('.barco');
 
+let barcoSeleccionado = null;
 
-    draggables.forEach(draggable => {
-        draggable.addEventListener('dragstart', () => {
+for (let barco of barcos) {
+  barco.addEventListener('dragstart', (e) => {
+    barcoSeleccionado = e.target;
+  });
+  
+  barco.addEventListener('dragend', () => {
+    barcoSeleccionado = null;
+  });
+}
 
-            event.dataTransfer.setData('text/plain', draggable.id);
-        });
-    });
+const celdas = document.querySelectorAll('.cell');
 
+for (let celda of celdas) {
+  celda.addEventListener('dragover', (e) => {
+    e.preventDefault();
+  });
+  
+  celda.addEventListener('dragenter', (e) => {
+    e.preventDefault();
+    celda.classList.add('hover');
+  });
+  
+  celda.addEventListener('dragleave', () => {
+    celda.classList.remove('hover');
+  });
+  
+  celda.addEventListener('drop', () => {
+    celda.appendChild(barcoSeleccionado);
+    celda.classList.remove('hover');
+  });
+}
 
-    const cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => {
-        cell.addEventListener('dragover', event => {
-            event.preventDefault();
-        });
-    });
-
-
-    cells.forEach(cell => {
-        cell.addEventListener('drop', event => {
-
-            const id = event.dataTransfer.getData('text');
-
-
-            const draggable = document.getElementById(id);
-
-
-            event.target.appendChild(draggable);
-        });
-    });
 }
 
 window.onload = function () {

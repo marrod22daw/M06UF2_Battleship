@@ -12,7 +12,10 @@ h1 {
     margin: 0 auto;
     background-color: #fff;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
-}
+    position: relative;
+    margin-top: 20px;
+  }
+
 
 .board th,
 .board td {
@@ -42,20 +45,23 @@ h1 {
 .tables-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 50px;
     margin-top: 50px;
-}
-
-.tables-container > div {
-    margin-right: 20px;
-}
-
-.ship-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
+  }
+  
+  .table-container {
+    position: relative;
+  }
+  
+  .ship-container {
+    position: absolute;
+    bottom: -140px; /* Ajusta el valor según el tamaño de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+  }
+  
 
 /* Agregar reglas CSS para habilitar el arrastrar y soltar */
 body {
@@ -83,4 +89,19 @@ body {
     left: 25%;
     border: 2px dashed black;
     z-index: 9999;
+}
+
+.cell {
+    position: relative;
+  }
+
+  .barco {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+    display: inline-block;
 }
