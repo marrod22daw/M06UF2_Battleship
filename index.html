@@ -17,20 +17,20 @@
                     <tr>
                         <th></th>
                         <script>
-                            const cols = 10;
-                            const colNames = "ABCDEFGHIJ";
-                            for (let i = 0; i < cols; i++) {
-                                document.write(`<th>${colNames[i]}</th>`);
+                            const columnas = 10;
+                            const columLetras = "ABCDEFGHIJ";
+                            for (let i = 0; i < columnas; i++) {
+                                document.write(`<th>${columLetras[i]}</th>`);
                             }
                         </script>
                     </tr>
                 </thead>
                 <tbody>
                     <script>
-                        const rows = 10;
-                        for (let i = 1; i <= rows; i++) {
+                        const filas = 10;
+                        for (let i = 1; i <= filas; i++) {
                             document.write(`<tr><th>${i}</th>`);
-                            for (let j = 0; j < cols; j++) {
+                            for (let j = 0; j < columnas; j++) {
                                 document.write(`<td class="cell"></td>`);
                             }
                             document.write("</tr>");
@@ -38,6 +38,20 @@
                     </script>
                 </tbody>
             </table>
+
+            <td><img class="barco" src="Media/Portaaviones.png"></td> <br>
+
+            <td><img class="barco" src="Media/Battleship.png"></td>
+            <td><img class="barco" src="Media/Battleship.png"></td> <br>
+
+            <td><img class="barco" src="Media/Submarino.png"></td>
+            <td><img class="barco" src="Media/Submarino.png"></td>
+            <td><img class="barco" src="Media/Submarino.png"></td> <br>
+
+            <td><img class="barco" src="Media/Barca.png"></td>
+            <td><img class="barco" src="Media/Barca.png"></td>
+            <td><img class="barco" src="Media/Barca.png"></td>
+            <td><img class="barco" src="Media/Barca.png"></td> <br>
         </div>
         <div>
             <p>Tabla de la máquina:</p>
@@ -46,17 +60,17 @@
                     <tr>
                         <th></th>
                         <script>
-                            for (let i = 0; i < cols; i++) {
-                                document.write(`<th>${colNames[i]}</th>`);
+                            for (let i = 0; i < columnas; i++) {
+                                document.write(`<th>${columLetras[i]}</th>`);
                             }
                         </script>
                     </tr>
                 </thead>
                 <tbody>
                     <script>
-                        for (let i = 1; i <= rows; i++) {
+                        for (let i = 1; i <= filas; i++) {
                             document.write(`<tr><th>${i}</th>`);
-                            for (let j = 0; j < cols; j++) {
+                            for (let j = 0; j < columnas; j++) {
                                 document.write(`<td class="cell"></td>`);
                             }
                             document.write("</r>");
@@ -64,8 +78,23 @@
                     </script>
                 </tbody>
             </table>
+            <td><img class="barco" src="Media/Portaaviones.png" tamaño="5"></td> <br>
+
+            <td><img class="barco" src="Media/Battleship.png" tamaño="4"></td>
+            <td><img class="barco" src="Media/Battleship.png" tamaño="4"></td> <br>
+
+            <td><img class="barco" src="Media/Submarino.png" tamaño="3"></td>
+            <td><img class="barco" src="Media/Submarino.png" tamaño="3"></td>
+            <td><img class="barco" src="Media/Submarino.png" tamaño="3"></td> <br>
+
+            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td>
+            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td>
+            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td>
+            <td><img class="barco" src="Media/Barca.png" tamaño="2"></td> <br>
         </div>
     </div>
+
+
 </body>
 
 </html>
