@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hundir flota</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="tablaJugador">
+        <thead>
+            <tr>
+                <th></th>
+                <script>
+                    const columnas = 10;
+                    const columLetras = "ABCDEFGHIJ";
+                    for (let i = 0; i < columnas; i++) {
+                        document.write(`<th>${columLetras[i]}</th>`);
+                    }
+                </script>
+            </tr>
+        </thead>
+        <tbody>
+            <script>
+                for (let i = 0; i < 10; i++) {
+                    document.write(`<tr><th>${i}</th>`);
+                    for (let j = 0; j < 10; j++) {
+                        document.write("<td id='", columLetras[j], i, "', onclick='cambiarColor(this)'></td>");
+                    }
+                    document.write("</tr>");
+                }
+            </script>
+        </tbody>
+    </table>
+
+    <script>
+        let barcosJugador = [];
+        let barcosTotal = 30;
+        function cambiarColor(celda) {
+            if (barcosJugador.some(function (x) { return x === celda.id; })) {
+                celda.style.backgroundColor = "white";
+                barcosJugador.pop(celda.id);
+                console.log(barcosJugador);
+                barcosTotal++;
+                console.log(barcosTotal);
+            } else {
+                console.log(celda.id);
+                // Cambiar el color de la celda al hacer clic en ella
+                celda.style.backgroundColor = "grey";
+                barcosJugador.push(celda.id);
+                console.log(barcosJugador);
+                barcosTotal--;
+                console.log(barcosTotal);
+            }
+        }
+    </script>
+</body>
+
+</html>
