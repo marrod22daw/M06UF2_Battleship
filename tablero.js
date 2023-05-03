@@ -25,19 +25,19 @@ function createGrid(board) {
   const grid = document.createElement('table');
   board.appendChild(grid);
 
-  const letters = 'ABCDEFGHIJ';
+  const lletra = 'ABCDEFGHIJ';
 
   // Crea la fila de las letras
-  const lettersRow = document.createElement('tr');
-  lettersRow.appendChild(document.createElement('th'));
+  const lletraRow = document.createElement('tr');
+  lletraRow.appendChild(document.createElement('th'));
 
   for (let i = 0; i < 10; i++) {
     const letter = document.createElement('th');
-    letter.textContent = letters.charAt(i);
-    lettersRow.appendChild(letter);
+    letter.textContent = lletra.charAt(i);
+    lletraRow.appendChild(letter);
   }
 
-  grid.appendChild(lettersRow);
+  grid.appendChild(lletraRow);
 
   // Crea las filas de los números y celdas vacías
   for (let i = 1; i <= 10; i++) {
@@ -48,6 +48,15 @@ function createGrid(board) {
 
     for (let j = 0; j < 10; j++) {
       const cell = document.createElement('td');
+
+      cell.setAttribute('id', i * 10 + j);
+      cell.setAttribute('class', 'box');
+      cell.setAttribute('data-index', i * 10 + j);
+      cell.setAttribute('data-cords', lletra[i] + j);
+
+      cell.addEventListener('drop', drop);
+      cell.addEventListener('dragover', allowDrop);
+
       row.appendChild(cell);
     }
 
@@ -61,19 +70,19 @@ function createComputerGrid() {
   const grid = document.createElement('table');
   computerBoardElement.appendChild(grid);
 
-  const letters = 'ABCDEFGHIJ';
+  const lletra = 'ABCDEFGHIJ';
 
   // Crea la fila de las letras
-  const lettersRow = document.createElement('tr');
-  lettersRow.appendChild(document.createElement('th'));
+  const lletraRow = document.createElement('tr');
+  lletraRow.appendChild(document.createElement('th'));
 
   for (let i = 0; i < 10; i++) {
     const letter = document.createElement('th');
-    letter.textContent = letters.charAt(i);
-    lettersRow.appendChild(letter);
+    letter.textContent = lletra.charAt(i);
+    lletraRow.appendChild(letter);
   }
 
-  grid.appendChild(lettersRow);
+  grid.appendChild(lletraRow);
 
   // Crea las filas de los números y celdas vacías
   // Dentro de la función createComputerGrid()

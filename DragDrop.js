@@ -37,6 +37,7 @@ numVaixells.set(3, '3');
 numVaixells.set(4, '3');
 numVaixells.set(5, '2');
 numVaixells.set(6, '2');
+
 function allowDrop(ev) {
   ev.preventDefault();
 }
@@ -66,9 +67,14 @@ function pintar(tamany, indice, direccion) {
     if (tamany == valor) {
       console.log(key + '=' + valor);
       numVaixells.delete(key);
+      if (![...numVaixells.values()].includes(valor)) {
+        const imgs = document.querySelectorAll(`img[tam="${valor}"]`); 
+        imgs.forEach(img => img.parentNode.removeChild(img));
+      }
       break;
     }
   }
+
 
   for (let j = 0; j < tamany; j++) {
     if (direccion == "H") {
