@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guerra de Vaixells</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Battleship</h1>
+    <div id="board_container">
+        <div id="barcus">
+            <img src="Media/Barca.png" alt="" draggable="true" ondragstart="drag(event)" id="barca" tam="2" direccio="H"> <br>
+            <img src="Media/Battleship.png" alt="" draggable="true" ondragstart="drag(event)" id="battleship" tam="3" direccio="H"> <br>
+            <img src="Media/Destroyer.png" alt="" draggable="true" ondragstart="drag(event)" id="destroyer" tam="4" direccio="H"> <br>
+            <img src="Media/Portaaviones.png" alt="" draggable="true" ondragstart="drag(event)" id="portaaviones" tam="5" direccio="H"> <br>
+            <img src="Media/BarcaV.png" alt="" draggable="true" ondragstart="drag(event)" id="barca" tam="2" direccio="V">
+            <img src="Media/BattleshipV.png" alt="" draggable="true" ondragstart="drag(event)" id="battleship" tam="3" direccio="V">
+            <img src="Media/DestroyerV.png" alt="" draggable="true" ondragstart="drag(event)" id="destroyer" tam="4" direccio="V">
+            <img src="Media/PortaavionesV.png" alt="" draggable="true" ondragstart="drag(event)" id="portaaviones" tam="5" direccio="V"> <br>
+        </div>
+        <div>
+            <div id="a">
+                <h2>Tu Tablero</h2>
+            </div>
+            <div id="player_board"></div>
+        </div>
+        <div>
+            <div id="b">
+                <h2>Tablero de la IA</h2>
+            </div>
+            <div id="computer_board"></div>
+        </div>
+    </div>
+    <div id="button_container">
+        <button id="start">Empezar Juego</button>
+    </div>
+    <script src="DragDrop.js"></script>
+    <script src="tablero.js"></script>
+    <script src="ia.js"></script>
+</body>
+
+
+</html>
