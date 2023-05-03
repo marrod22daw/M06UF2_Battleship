@@ -1,6 +1,40 @@
 const iacomputerBoard = document.getElementById('computer_board');
 const startBTN = document.getElementById('start');
 
+let db;
+// Crear o abrir la base de datos
+const request = indexedDB.open('battleship', 1);
+
+// Manejar errores al abrir la base de datos
+request.onerror = function(event) {
+  console.log('Error al abrir la base de datos', event);
+};
+
+// Crear la estructura de la base de datos si no existe
+request.onupgradeneeded = function(event) {
+  console.log('Creando estructura de la base de datos');
+  const db = event.target.result;
+  const objectStore = db.createObjectStore('ships', { keyPath: 'id' });
+};
+
+// Guardar los datos en la base de datos
+request.onsuccess = function(event) {
+  console.log('Base de datos abierta con éxito');
+  const db = event.target.result;
+  const transaction = db.transaction('ships', 'readwrite');
+  const objectStore = transaction.objectStore('ships');
+  for (let i = 0; i < SHIPS.length; i++) {
+    const shipData = { id: i, name: SHIPS[i].name, coords: shipCoords[i] };
+    const request = objectStore.add(shipData);
+    request.onerror = function(event) {
+      console.log('Error al guardar los datos', event);
+    };
+    request.onsuccess = function(event) {
+      console.log('Datos guardados con éxito', event);
+    };
+  }
+};
+
 
 const SHIPS = [
   { size: 5, name: 'carrier' },
@@ -34,7 +68,7 @@ while (!shipPlaced && i < SHIPS.length) {
         const startRow = Math.floor(randomSquare / 10) + 1;
         const endCol = String.fromCharCode(65 + (randomSquare % 10) + SHIPS[i].size - 1);
         const endRow = startRow;
-        console.log(`Baixell ${SHIPS[i].name} colocat de ${startCol}${startRow} a ${endCol}${endRow}`);
+        console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
       }
     }
   }
@@ -54,7 +88,7 @@ while (!shipPlaced && i < SHIPS.length) {
         const startRow = Math.floor(randomSquare / 10) + 1;
         const endCol = startCol;
         const endRow = Math.floor(randomSquare / 10) + SHIPS[i].size;
-        console.log(`Baixell ${SHIPS[i].name} colocat de ${startCol}${startRow} a ${endCol}${endRow}`);
+        console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
       }
     }
   }
