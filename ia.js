@@ -68,7 +68,7 @@ while (!shipPlaced && i < SHIPS.length) {
         const startRow = Math.floor(randomSquare / 10) + 1;
         const endCol = String.fromCharCode(65 + (randomSquare % 10) + SHIPS[i].size - 1);
         const endRow = startRow;
-        console.log(`Colocat el vaixell ${SHIPS[i].name} de ${startCol}${startRow} a ${endCol}${endRow}`);
+        console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
       }
     }
   }
@@ -88,7 +88,7 @@ while (!shipPlaced && i < SHIPS.length) {
         const startRow = Math.floor(randomSquare / 10) + 1;
         const endCol = startCol;
         const endRow = Math.floor(randomSquare / 10) + SHIPS[i].size;
-        console.log(`Colocat el vaixell ${SHIPS[i].name} de ${startCol}${startRow} a ${endCol}${endRow}`);
+        console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
       }
     }
   }
