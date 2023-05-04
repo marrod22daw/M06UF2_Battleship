@@ -11,6 +11,12 @@ numVaixells.set(4, '3');
 numVaixells.set(5, '2');
 numVaixells.set(6, '2');
 const netejar = document.getElementById('neteja');
+const guardar = document.getElementById('guarda');
+
+if (localStorage.getItem('barcosJugador')) {
+  barcosJugador = JSON.parse(localStorage.getItem('barcosJugador'));
+}
+
 
 netejar.addEventListener('click', () => {
 
@@ -28,8 +34,6 @@ const imgs2 = document.querySelectorAll(`img`);
     cell.style.backgroundColor = 'white';
   });
 });
-
-
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -57,6 +61,15 @@ function drop(ev) {
 
 function pintar(tamany, indice, direccion, nom) {
 
+  for (let z = 0; z < barcosJugador.length; z++) {
+    var barco = barcosJugador[z];
+    if (barco !=undefined){
+      document.getElementById(z).style.backgroundColor = "gray";
+    }
+    console.log(barco);
+  }
+
+
   for (let [key, valor] of numVaixells) {
     if (tamany == valor) {
       console.log(key + '=' + valor);
@@ -81,5 +94,14 @@ function pintar(tamany, indice, direccion, nom) {
     console.log(cordFinal);
     document.getElementById(cordFinal).style.backgroundColor = "gray";
   }
+
+}
+
+guardar.addEventListener('click', guardarBD);
+
+function guardarBD() {
+
+  localStorage.setItem('barcosJugador', JSON.stringify(barcosJugador));
+
 
 }
