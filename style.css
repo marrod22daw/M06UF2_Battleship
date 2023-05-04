@@ -22,8 +22,12 @@ table {
   
   #board_container {
     display: flex;
-    
   }
+
+  .hidden {
+    display: none;
+  }
+  
   
   h2 {
     margin-bottom: 10px;

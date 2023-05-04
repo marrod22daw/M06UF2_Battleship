@@ -37,6 +37,26 @@ numVaixells.set(3, '3');
 numVaixells.set(4, '3');
 numVaixells.set(5, '2');
 numVaixells.set(6, '2');
+const netejar = document.getElementById('neteja');
+
+netejar.addEventListener('click', () => {
+
+const imgs2 = document.querySelectorAll(`img`);
+  numVaixells.set(0, '5');
+  numVaixells.set(1, '4');
+  numVaixells.set(2, '4');
+  numVaixells.set(3, '3');
+  numVaixells.set(4, '3');
+  numVaixells.set(5, '2');
+  numVaixells.set(6, '2');
+  barcosJugador.splice(0, barcosJugador.length);
+  const cells = document.querySelectorAll('.box');
+  cells.forEach(cell => {
+    cell.style.backgroundColor = 'white';
+  });
+});
+
+
 
 function allowDrop(ev) {
   ev.preventDefault();
@@ -55,20 +75,21 @@ function drop(ev) {
     let data = ev.dataTransfer.getData("text");
     //barcosJugador[index] = data;
     cord = ev.target.dataset.cords;
-    pintar(tam, index, direccio,data);
+    pintar(tam, index, direccio, data);
     //ev.target.appendChild(document.getElementById(data));
     console.log("nom:", data, "tamany:", tam, "index:", index, "cord:", cord);
+  
   }
 }
 
-function pintar(tamany, indice, direccion,nom) {
+function pintar(tamany, indice, direccion, nom) {
 
   for (let [key, valor] of numVaixells) {
     if (tamany == valor) {
       console.log(key + '=' + valor);
       numVaixells.delete(key);
       if (![...numVaixells.values()].includes(valor)) {
-        const imgs = document.querySelectorAll(`img[tam="${valor}"]`); 
+        const imgs = document.querySelectorAll(`img[tam="${valor}"]`);
         imgs.forEach(img => img.parentNode.removeChild(img));
       }
       break;

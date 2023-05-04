@@ -24,7 +24,13 @@ request.onsuccess = function(event) {
   const transaction = db.transaction('ships', 'readwrite');
   const objectStore = transaction.objectStore('ships');
   for (let i = 0; i < SHIPS.length; i++) {
-    const shipData = { id: i, name: SHIPS[i].name, coords: shipCoords[i] };
+    
+    const shipData = {
+      id: i,
+      name: SHIPS[i].name,
+      coords: shipCoords[i],
+      position: `${startCol}${startRow}-${endCol}${endRow}`
+    };    
     const request = objectStore.add(shipData);
     request.onerror = function(event) {
       console.log('Error al guardar los datos', event);
@@ -34,7 +40,6 @@ request.onsuccess = function(event) {
     };
   }
 };
-
 
 const SHIPS = [
   { size: 5, name: 'carrier' },
@@ -47,6 +52,8 @@ const SHIPS = [
 const shipCoords = [];
 let i = 0;
 let shipPlaced = false;
+let startCol, startRow, endCol, endRow;
+const validCoords = [];
 
 while (!shipPlaced && i < SHIPS.length) {
   const randomSquare = Math.floor(Math.random() * 100);
@@ -64,11 +71,11 @@ while (!shipPlaced && i < SHIPS.length) {
         shipPlaced = true;
 
         // Convert coordinates to letters and numbers
-        const startCol = String.fromCharCode(65 + randomSquare % 10);
-        const startRow = Math.floor(randomSquare / 10) + 1;
-        const endCol = String.fromCharCode(65 + (randomSquare % 10) + SHIPS[i].size - 1);
-        const endRow = startRow;
-        console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
+        startCol = String.fromCharCode(65 + randomSquare % 10);
+    startRow = Math.floor(randomSquare / 10) + 1;
+    endCol = String.fromCharCode(65 + (randomSquare % 10) + SHIPS[i].size - 1);
+    endRow = startRow;
+    console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
       }
     }
   }
@@ -84,10 +91,10 @@ while (!shipPlaced && i < SHIPS.length) {
         shipPlaced = true;
 
         // Convert coordinates to letters and numbers
-        const startCol = String.fromCharCode(65 + randomSquare % 10);
-        const startRow = Math.floor(randomSquare / 10) + 1;
-        const endCol = startCol;
-        const endRow = Math.floor(randomSquare / 10) + SHIPS[i].size;
+        startCol = String.fromCharCode(65 + randomSquare % 10);
+        startRow = Math.floor(randomSquare / 10) + 1;
+        endCol = String.fromCharCode(65 + (randomSquare % 10) + SHIPS[i].size - 1);
+        endRow = startRow;
         console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
       }
     }
@@ -99,6 +106,7 @@ while (!shipPlaced && i < SHIPS.length) {
     shipPlaced = false;
   }
 }
+
 
 for (let i = 0; i < 100; i++) {
   const cell = iacomputerBoard.querySelectorAll('td')[i];

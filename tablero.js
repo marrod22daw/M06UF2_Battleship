@@ -87,7 +87,7 @@ function createComputerGrid() {
   // Crea las filas de los números y celdas vacías
   // Dentro de la función createComputerGrid()
 
-for (let i = 1; i <= 10; i++) {
+for (let i = 0; i < 10; i++) {
   const row = document.createElement('tr');
   const number = document.createElement('th');
   number.textContent = i;
