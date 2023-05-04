@@ -40,7 +40,7 @@ function createGrid(board) {
   grid.appendChild(lletraRow);
 
   // Crea las filas de los números y celdas vacías
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 0; i < 10; i++) {
     const row = document.createElement('tr');
     const number = document.createElement('th');
     number.textContent = i;
@@ -52,7 +52,7 @@ function createGrid(board) {
       cell.setAttribute('id', i * 10 + j);
       cell.setAttribute('class', 'box');
       cell.setAttribute('data-index', i * 10 + j);
-      cell.setAttribute('data-cords', lletra[i] + j);
+      cell.setAttribute('data-cords', lletra[j] + i);
 
       cell.addEventListener('drop', drop);
       cell.addEventListener('dragover', allowDrop);

@@ -53,15 +53,15 @@ function drop(ev) {
   if (barcosJugador[index] == undefined) { //se fija que no haya un valor
     console.log(barcosJugador);
     let data = ev.dataTransfer.getData("text");
-    barcosJugador[index] = data;
+    //barcosJugador[index] = data;
     cord = ev.target.dataset.cords;
-    pintar(tam, index, direccio);
+    pintar(tam, index, direccio,data);
     //ev.target.appendChild(document.getElementById(data));
     console.log("nom:", data, "tamany:", tam, "index:", index, "cord:", cord);
   }
 }
 
-function pintar(tamany, indice, direccion) {
+function pintar(tamany, indice, direccion,nom) {
 
   for (let [key, valor] of numVaixells) {
     if (tamany == valor) {
@@ -79,8 +79,10 @@ function pintar(tamany, indice, direccion) {
   for (let j = 0; j < tamany; j++) {
     if (direccion == "H") {
       cordFinal = indice + j;
+      barcosJugador[cordFinal] = nom;
     } else if (direccion == "V") {
       cordFinal = indice + j * 10;
+      barcosJugador[cordFinal] = nom;
     }
     console.log(cordFinal);
     document.getElementById(cordFinal).style.backgroundColor = "gray";
