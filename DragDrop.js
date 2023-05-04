@@ -1,30 +1,3 @@
-/* let barcosJugador = [];
-let barcosTotal = 30;
-function cambiarColor(celda) {
-  if (barcosJugador.some(function (x) { return x === celda.id; })) {
-    celda.style.backgroundColor = "white";
-    eliminarBarcoJugador(celda.id);
-  } else {
-    celda.style.backgroundColor = "grey";
-    agregarBarcoJugador(celda.id);
-  }
-}
-
-function agregarBarcoJugador(idCelda) {
-  barcosJugador.push(idCelda);
-  barcosTotal--;
-  console.log(barcosJugador);
-  console.log(barcosTotal);
-}
-
-function eliminarBarcoJugador(idCelda) {
-  barcosJugador.pop(idCelda);
-  barcosTotal++;
-  console.log(barcosJugador);
-  console.log(barcosTotal);
-}
-   */
-
 let barcosJugador = [];
 let tam;
 let direccio;
