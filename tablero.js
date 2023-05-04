@@ -17,12 +17,12 @@ class Grid {
     this.coords = Coords;
   }
 
-  // Método para crear la cuadrícula
+ 
   create() {
     const grid = document.createElement('table');
     this.boardElement.appendChild(grid);
 
-    // Crea la fila de las letras
+    
     const lletraRow = document.createElement('tr');
     lletraRow.appendChild(document.createElement('th'));
 
@@ -34,7 +34,7 @@ class Grid {
 
     grid.appendChild(lletraRow);
 
-    // Crea las filas de los números y celdas vacías
+    
     for (let i = 0; i < 10; i++) {
       const row = document.createElement('tr');
       const number = document.createElement('th');
@@ -73,7 +73,7 @@ class ComputerGrid extends Grid {
   create() {
     super.create();
 
-    // Añadir evento click para las celdas de la cuadrícula del ordenador
+    
     this.cells.forEach(cell => {
       cell.addEventListener('click', () => {
         const index = parseInt(cell.dataset.index);
@@ -100,10 +100,10 @@ function startGame() {
     return;
   }
 
-  // Llamamos a la función createComputerGrid para crear la tabla de la IA
+  
   const computerGrid = new ComputerGrid(document.getElementById('computer_board'));
   computerGrid.create();
 
-  // Centrar el botón después de hacer clic en él
+  
   document.getElementById('button_container').style.textAlign = 'center';
 }
