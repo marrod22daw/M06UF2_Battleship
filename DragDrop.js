@@ -17,9 +17,19 @@ if (localStorage.getItem('barcosJugador')) {
   barcosJugador = JSON.parse(localStorage.getItem('barcosJugador'));
 }
 
+window.onload = function() {
+  for (let z = 0; z < barcosJugador.length; z++) {
+    var barco = barcosJugador[z];
+    if (barco !=undefined){
+      document.getElementById(z).style.backgroundColor = "gray";
+    }
+    console.log(barco);
+  }
+}
+
 
 netejar.addEventListener('click', () => {
-
+  localStorage.clear();
 const imgs2 = document.querySelectorAll(`img`);
   numVaixells.set(0, '5');
   numVaixells.set(1, '4');
@@ -61,13 +71,13 @@ function drop(ev) {
 
 function pintar(tamany, indice, direccion, nom) {
 
-  for (let z = 0; z < barcosJugador.length; z++) {
+  /* for (let z = 0; z < barcosJugador.length; z++) {
     var barco = barcosJugador[z];
     if (barco !=undefined){
       document.getElementById(z).style.backgroundColor = "gray";
     }
     console.log(barco);
-  }
+  } */
 
 
   for (let [key, valor] of numVaixells) {

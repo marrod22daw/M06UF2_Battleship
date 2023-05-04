@@ -35,7 +35,7 @@ class Grid {
     grid.appendChild(lletraRow);
 
     
-    for (let i = 0; i < 10; i++) {
+    for (let i = 1; i <= 10; i++) {
       const row = document.createElement('tr');
       const number = document.createElement('th');
       number.textContent = i;
@@ -72,18 +72,21 @@ class ComputerGrid extends Grid {
   // Método para crear la cuadrícula del ordenador
   create() {
     super.create();
-
+    
     
     this.cells.forEach(cell => {
+      const id = cell.getAttribute('id'); // obtener la ID de la celda
       cell.addEventListener('click', () => {
-        const index = parseInt(cell.dataset.index);
-        if (shipCoords.includes(index)) {
+        if (shipCoords.includes(parseInt(id.replace("computer_", "")))) {
+          cell.style.backgroundColor = "red";
           console.log('acertaste');
         } else {
+          cell.style.backgroundColor = "blue";
           console.log('fallaste');
         }
       });
     });
+    
   }
 }
 
