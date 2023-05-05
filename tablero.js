@@ -112,7 +112,6 @@ function startGame() {
 
   document.getElementById('button_container').style.textAlign = 'center';
 
-
   IA();
 }
 

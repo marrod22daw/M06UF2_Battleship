@@ -1,11 +1,11 @@
 export function IA() {
+    let barcosIA = [];
     // Inicializa el objeto IndexedDB
     const request = window.indexedDB.open("MiBaseDeDatos");
     // Cuando la base de datos esté lista
     request.onsuccess = (event) => {
         const db = event.target.result;
 
-        let barcosIA = [];
         let numVaixellsIA = new Map();
         let cordLetra;
         let cordNum;
@@ -31,8 +31,8 @@ export function IA() {
                             let letraActual = letras[cordLetra + j];
                             let cordsFinal = letraActual + cordNum;
                             console.log(cordsFinal);
-                            document.getElementById(cordsFinal).style.backgroundColor = "gray";
-                            barcosIA[cordsFinal] = valor;
+                            //document.getElementById(cordsFinal).style.backgroundColor = "gray";
+                            barcosIA[cordsFinal] = key;
                             // Agrega la casilla a IndexedDB
                             const objectStore = db.transaction("casillas", "readwrite").objectStore("casillas");
                             const request = objectStore.add({ casilla: cordsFinal, barco: valor });
@@ -56,8 +56,8 @@ export function IA() {
                         if (NumActual <= 10) {
                             let cordsFinal = letraActual + NumActual;
                             console.log(cordsFinal);
-                            document.getElementById(cordsFinal).style.backgroundColor = "gray";
-                            barcosIA[cordsFinal] = valor;
+                            //document.getElementById(cordsFinal).style.backgroundColor = "gray";
+                            barcosIA[cordsFinal] = key;
                             // Agrega la casilla a IndexedDB
                             const objectStore = db.transaction("casillas", "readwrite").objectStore("casillas");
                             const request = objectStore.add({ casilla: cordsFinal, barco: valor });
@@ -88,5 +88,25 @@ export function IA() {
         const db = event.target.result;
         const objectStore = db.createObjectStore("casillas", { keyPath: "casilla" });
     }
+
+    if (localStorage.getItem('barcosJugador')) {
+        barcosJugador = JSON.parse(localStorage.getItem('barcosJugador'));
+    }
+    console.log(barcosJugador);
+  
+    const cells = document.querySelectorAll('td');
+  
+    cells.forEach((cell) => {
+  
+        cell.addEventListener('click', () => {
+            const id = cell.getAttribute('id');
+            console.log(id);
+            if (barcosIA[id] !== undefined) {
+                document.getElementById(id).style.backgroundColor = "red";
+            } else {
+                document.getElementById(id).style.backgroundColor = "#00FFFF";
+            }
+        });
+    });
 
 }
