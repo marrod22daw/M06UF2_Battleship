@@ -34,7 +34,7 @@ class Grid {
 
     grid.appendChild(lletraRow);
 
-    
+    let f = 0;
     for (let i = 1; i <= 10; i++) {
       const row = document.createElement('tr');
       const number = document.createElement('th');
@@ -43,10 +43,10 @@ class Grid {
 
       for (let j = 0; j < 10; j++) {
         const cell = document.createElement('td');
-        cell.setAttribute('id', i * 10 + j);
+        cell.setAttribute('id', f * 10 + j);
         cell.setAttribute('class', 'box');
-        cell.setAttribute('data-index', i * 10 + j);
-        cell.setAttribute('data-cords', this.coords.getLetter(j) + i);
+        cell.setAttribute('data-index', f * 10 + j);
+        cell.setAttribute('data-cords', this.coords.getLetter(j) + f);
 
 
         cell.addEventListener('drop', drop);
@@ -55,7 +55,7 @@ class Grid {
 
         this.cells.push(cell);
       }
-
+      f++;
       grid.appendChild(row);
     }
 
@@ -109,6 +109,5 @@ function startGame() {
   const computerGrid = new ComputerGrid(document.getElementById('computer_board'));
   computerGrid.create();
 
-  
   document.getElementById('button_container').style.textAlign = 'center';
 }

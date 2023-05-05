@@ -17,15 +17,14 @@ if (localStorage.getItem('barcosJugador')) {
   barcosJugador = JSON.parse(localStorage.getItem('barcosJugador'));
 }
 
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
   for (let z = 0; z < barcosJugador.length; z++) {
-    var barco = barcosJugador[z];
+    let barco = barcosJugador[z];
     if (barco !=undefined){
       document.getElementById(z).style.backgroundColor = "gray";
     }
-    console.log(barco);
   }
-}
+});
 
 
 netejar.addEventListener('click', () => {
@@ -70,15 +69,6 @@ function drop(ev) {
 }
 
 function pintar(tamany, indice, direccion, nom) {
-
-  /* for (let z = 0; z < barcosJugador.length; z++) {
-    var barco = barcosJugador[z];
-    if (barco !=undefined){
-      document.getElementById(z).style.backgroundColor = "gray";
-    }
-    console.log(barco);
-  } */
-
 
   for (let [key, valor] of numVaixells) {
     if (tamany == valor) {
