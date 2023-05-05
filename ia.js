@@ -12,7 +12,8 @@ export function IA() {
     numVaixellsIA.set(5, '2');
     numVaixellsIA.set(6, '2');
 
-    for (let [key, valor] of numVaixells) {
+    for (let [key, valor] of numVaixellsIA) {
+        console.log(key + '=' + valor);
         let colocat = false;
         while (!colocat) {
             const direccio = Math.round(Math.random());
@@ -20,32 +21,44 @@ export function IA() {
                 cordLetra = Math.floor(Math.random() * 10);
                 cordNum = Math.floor(Math.random() * 10) + 1;
                 for (let j = 0; j < valor; j++) {
-                    let letraActual = letras[cordLetra + j];
-                    let cordsFinal =  letraActual + cordNum;
-                    console.log(cordsFinal);
-                    document.getElementById(cordsFinal).style.backgroundColor = "gray";
-                    barcosIA[cordsFinal] = key;
-                    if (barcosIA[cordsFinal]) {colocat = false} else {colocat = true}
+                    if (cordLetra + j < letras.length) {
+                        let letraActual = letras[cordLetra + j];
+                        let cordsFinal = letraActual + cordNum;
+                        console.log(cordsFinal);
+                        document.getElementById(cordsFinal).style.backgroundColor = "gray";
+                        barcosIA[cordsFinal] = key;
+                        colocat = true;
+                        numVaixellsIA.delete(key);
+                    } else {
+                        barcosIA.splice(0, barcosIA.length);
+                        colocat = false;
+                        console.log("Fora");
+                    }
                 }
             } else if (direccio == 1) { //vertical
+                cordLetra = Math.floor(Math.random() * 10);
+                cordNum = Math.floor(Math.random() * 10) + 1;
+                let letraActual = letras[cordLetra];
+                for (let j = 0; j < valor; j++) {
+                    let NumActual = cordNum + j;
+                    if (NumActual <= 10) {
+                        let cordsFinal = letraActual + NumActual;
+                        console.log(cordsFinal);
+                        document.getElementById(cordsFinal).style.backgroundColor = "gray";
+                        barcosIA[cordsFinal] = key;
+                        colocat = true;
+                        numVaixellsIA.delete(key);
+                    } else {
+                        barcosIA.splice(0, barcosIA.length);
+                        colocat = false;
+                        console.log("Fora");
+                    }
+                }
             }
 
         }
-        numVaixells.delete(key);
     }
     console.log(barcosIA);
 }
 
-function colocar(tamany, indice, direccion, nom) {
-    for (let j = 0; j < tamany; j++) {
-        if (direccion == "H") {
-            cordFinal = indice + j;
-            barcosJugador[cordFinal] = nom;
-        } else if (direccion == "V") {
-            cordFinal = indice + j * 10;
-            barcosJugador[cordFinal] = nom;
-        }
-        console.log(cordFinal);
-        document.getElementById(cordFinal).style.backgroundColor = "gray";
-    }
-}
+
