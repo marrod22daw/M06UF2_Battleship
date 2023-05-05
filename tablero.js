@@ -17,12 +17,12 @@ class Grid {
     this.coords = Coords;
   }
 
- 
+
   create() {
     const grid = document.createElement('table');
     this.boardElement.appendChild(grid);
 
-    
+
     const lletraRow = document.createElement('tr');
     lletraRow.appendChild(document.createElement('th'));
 
@@ -72,22 +72,23 @@ class ComputerGrid extends Grid {
   // Método para crear la cuadrícula del ordenador
   create() {
     super.create();
-    
-    
-    this.cells.forEach(cell => {
-      const id = cell.getAttribute('id'); // obtener la ID de la celda
+  
+    const letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+  
+    this.cells.forEach((cell, index) => {
+      const letra = letras[index % 10];
+      const numero = (index - (index % 10)) / 10 + 1;
+      const id = letra + numero;
+      cell.setAttribute('id', id);
+  
       cell.addEventListener('click', () => {
-        if (shipCoords.includes(parseInt(id.replace("computer_", "")))) {
-          cell.style.backgroundColor = "red";
-          console.log('acertaste');
-        } else {
-          cell.style.backgroundColor = "blue";
-          console.log('fallaste');
-        }
+        console.log(id);
       });
     });
-    
   }
+  
+  
+
 }
 
 // Llamamos a la función createGrid para crear la tabla del jugador cuando se carga la página
@@ -95,7 +96,7 @@ const startBtn = document.getElementById('start');
 const playerGrid = new Grid(document.getElementById('player_board'));
 let texto = document.getElementById("b");
 playerGrid.create();
-
+import { IA } from './ia.js';
 startBtn.addEventListener('click', startGame);
 
 function startGame() {
@@ -105,9 +106,13 @@ function startGame() {
     return;
   }
 
-  
+
   const computerGrid = new ComputerGrid(document.getElementById('computer_board'));
   computerGrid.create();
 
   document.getElementById('button_container').style.textAlign = 'center';
+
+
+  IA();
 }
+

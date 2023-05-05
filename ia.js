@@ -1,128 +1,51 @@
-const iacomputerBoard = document.getElementById('computer_board');
-const startBTN = document.getElementById('start');
+export function IA() {
+    let barcosIA = [];
+    let numVaixellsIA = new Map();
+    let cordLetra;
+    let cordNum;
+    let letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+    numVaixellsIA.set(0, '5');
+    numVaixellsIA.set(1, '4');
+    numVaixellsIA.set(2, '4');
+    numVaixellsIA.set(3, '3');
+    numVaixellsIA.set(4, '3');
+    numVaixellsIA.set(5, '2');
+    numVaixellsIA.set(6, '2');
 
-let db;
-// Crear o abrir la base de datos
-const request = indexedDB.open('battleship', 1);
+    for (let [key, valor] of numVaixells) {
+        let colocat = false;
+        while (!colocat) {
+            const direccio = Math.round(Math.random());
+            if (direccio == 0) {    //horitzontal
+                cordLetra = Math.floor(Math.random() * 10);
+                cordNum = Math.floor(Math.random() * 10) + 1;
+                for (let j = 0; j < valor; j++) {
+                    let letraActual = letras[cordLetra + j];
+                    let cordsFinal =  letraActual + cordNum;
+                    console.log(cordsFinal);
+                    document.getElementById(cordsFinal).style.backgroundColor = "gray";
+                    barcosIA[cordsFinal] = key;
+                    if (barcosIA[cordsFinal]) {colocat = false} else {colocat = true}
+                }
+            } else if (direccio == 1) { //vertical
+            }
 
-// Manejar errores al abrir la base de datos
-request.onerror = function(event) {
-  console.log('Error al abrir la base de datos', event);
-};
-
-// Crear la estructura de la base de datos si no existe
-request.onupgradeneeded = function(event) {
-  console.log('Creando estructura de la base de datos');
-  const db = event.target.result;
-  const objectStore = db.createObjectStore('ships', { keyPath: 'id' });
-};
-
-// Guardar los datos en la base de datos
-request.onsuccess = function(event) {
-  console.log('Base de datos abierta con éxito');
-  const db = event.target.result;
-  const transaction = db.transaction('ships', 'readwrite');
-  const objectStore = transaction.objectStore('ships');
-  for (let i = 0; i < SHIPS.length; i++) {
-    const shipCoords = []; // mover esto aquí para que sea diferente para cada barco
-    let shipPlaced = false;
-    let startCol, startRow, endCol, endRow;
-    const validCoords = [];
-
-    while (!shipPlaced) {
-      const randomSquare = Math.floor(Math.random() * 100);
-      const direction = Math.floor(Math.random() * 2);
-
-      // Horizontal
-      if (direction === 0) {
-        if (randomSquare % 10 <= 10 - SHIPS[i].size) {
-          const validCoords = [];
-          for (let j = 0; j < SHIPS[i].size; j++) {
-            validCoords.push(randomSquare + j);
-          }
-          if (validCoords.every((coord) => !shipCoords.includes(coord))) {
-            shipCoords.push(...validCoords);
-            shipPlaced = true;
-
-            // Convert coordinates to letters and numbers
-            startCol = String.fromCharCode(65 + randomSquare % 10);
-            startRow = Math.floor(randomSquare / 10) + 1;
-            endCol = String.fromCharCode(65 + (randomSquare % 10) + SHIPS[i].size - 1);
-            endRow = startRow;
-            console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
-          }
         }
-      }
-      // Vertical
-      else {
-        if (randomSquare <= 90 + (9 - SHIPS[i].size) * 10) {
-          const validCoords = [];
-          for (let j = 0; j < SHIPS[i].size; j++) {
-            validCoords.push(randomSquare + j * 10);
-          }
-          if (validCoords.every((coord) => !shipCoords.includes(coord))) {
-            shipCoords.push(...validCoords);
-            shipPlaced = true;
+        numVaixells.delete(key);
+    }
+    console.log(barcosIA);
+}
 
-            // Convert coordinates to letters and numbers
-            startCol = String.fromCharCode(65 + randomSquare % 10);
-            startRow = Math.floor(randomSquare / 10) + 1;
-            endCol = String.fromCharCode(65 + (randomSquare % 10));
-            endRow = startRow + SHIPS[i].size - 1;
-            console.log(`Placed ${SHIPS[i].name} from ${startCol}${startRow} to ${endCol}${endRow}`);
-          }
+function colocar(tamany, indice, direccion, nom) {
+    for (let j = 0; j < tamany; j++) {
+        if (direccion == "H") {
+            cordFinal = indice + j;
+            barcosJugador[cordFinal] = nom;
+        } else if (direccion == "V") {
+            cordFinal = indice + j * 10;
+            barcosJugador[cordFinal] = nom;
         }
-      }
+        console.log(cordFinal);
+        document.getElementById(cordFinal).style.backgroundColor = "gray";
     }
-
-    const shipData = {
-      id: i,
-      name: SHIPS[i].name,
-      coords: shipCoords,
-      position: `${startCol}${startRow}-${endCol}${endRow}`
-    };    
-    const request = objectStore.add(shipData);
-    request.onerror = function(event) {
-      console.log('Error al guardar los datos', event);
-    };
-    request.onsuccess = function(event) {
-      console.log('Datos guardados con éxito', event);
-    };
-    
-  
-
-  // Move on to next ship if current one is placed
-  if (shipPlaced) {
-    i++;
-    shipPlaced = false;
-  }
-}
-}
-const SHIPS = [
-  { size: 5, name: 'carrier' },
-  { size: 4, name: 'battleship' },
-  { size: 3, name: 'cruiser' },
-  { size: 3, name: 'submarine' },
-  { size: 2, name: 'destroyer' },
-];
-
-for (let i = 0; i < 100; i++) {
-  const cell = iacomputerBoard.querySelectorAll('td')[i];
-  if (cell) { // Verificar si cell es "truthy"
-    cell.dataset.index = i;
-    if (shipCoords.includes(i)) {
-      cell.classList.add('ship');
-    }
-    cell.addEventListener('click', handleCellClick);
-  }
-}
-
-function handleCellClick(event) {
-  const cell = event.target;
-  const index = parseInt(cell.dataset.index);
-  if (shipCoords.includes(index)) {
-    console.log('acertaste');
-  } else {
-    console.log('fallaste');
-  }
 }
