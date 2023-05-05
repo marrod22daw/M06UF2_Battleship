@@ -6,17 +6,12 @@ table {
 
 @font-face {
   font-family: 'barcos';
-  src: url('Media/fonts/freeshipping.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'barcos2';
-  src: url('Media/fonts/Ships.ttf') format('truetype');
+  src: url('Media/fonts/JackPirate.ttf') format('truetype');
 }
 
 
 body {
-  background-image: url('Media/fondo.jpg');
+  background-image: url('Media/fondo.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -26,20 +21,31 @@ h1 {
   font-size: 50px;
   font-family: 'barcos', sans-serif;
   text-align: center;
+  
 }
 
 h2 {
+  font-family: 'barcos', sans-serif;
   text-align: center;
+  margin-bottom: 10px;
 }
 
-#battleship{
-  margin-top: -130px;
-  margin-bottom: -50px;
-  font-size: 500px;
-  font-family: 'barcos2', sans-serif;
-  text-align: center;
+#cartell{
+  display: block;
+  margin: 0 auto;
+  width: 370px;
+  height: 230px;
 }
+
+#cartell2{
+  display: block;
+  margin: 0 auto;
+  width: 220px;
+  height: 60px;
+}
+
 td {
+  font-family: 'barcos', sans-serif;
   border: 1px solid black;
   background-color: white;
   width: 40px;
@@ -52,7 +58,7 @@ th {
   border: 1px solid black;
   width: 40px;
   height: 40px;
-  background-color: gray;
+  background-color: #F4A460;
   text-align: center;
 }
 
@@ -64,12 +70,14 @@ th {
   display: none;
 }
 
+
+
 .pirata {
   position: absolute;
   bottom: 20px;
   right: 10px;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background-image: url("Media/pirata2.png");
   background-color: transparent;
   background-size: cover;
@@ -99,25 +107,52 @@ th {
 }
 
 
-
-h2 {
-  margin-bottom: 10px;
+#button_container {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  text-align: center;
 }
 
-#button_container {
-  text-align: center;
+#neteja{
+  width: 180px;
+  height: 150px;
+  margin-right: 20px;
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  background-image: url("Media/reset.png");
+}
+
+#guarda {
+  width: 180px;
+  height: 150px;
+  margin-right: 20px;
+  margin-top: -30px;
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  background-image: url("Media/guardar.png");
+}
+
+#start {
+  width: 180px;
+  height: 150px;
+  margin-right: 20px;
+  margin-top: -30px;
+  background-color: transparent;
+  background-size: cover;
+  border: none;
+  background-image: url("Media/comencar.png");
 }
 
 #barcus {
   margin-left: 10px;
 }
 
-#a {
-  margin-left: 10px;
-}
 
 #b {
-  margin-left: 318px;
+  display: none;
 }
 
 .hovered {

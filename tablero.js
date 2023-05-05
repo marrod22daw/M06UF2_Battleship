@@ -93,11 +93,13 @@ class ComputerGrid extends Grid {
 // Llamamos a la función createGrid para crear la tabla del jugador cuando se carga la página
 const startBtn = document.getElementById('start');
 const playerGrid = new Grid(document.getElementById('player_board'));
+let texto = document.getElementById("b");
 playerGrid.create();
 
 startBtn.addEventListener('click', startGame);
 
 function startGame() {
+  b.style.display = "block";
   // Verificar si ya se creó la tabla de la IA
   if (document.querySelector("#computer_board table")) {
     return;

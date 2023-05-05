@@ -10,36 +10,32 @@
 </head>
 
 <body>
-    <div id="battleship">o</div>
-    <h1>Battleships</h1>
+    <img src="Media/cartell.png" id="cartell">
+
     <div id="board_container">
         <div id="barcus">
-            <img src="Media/Barca.png" alt="" draggable="true" ondragstart="drag(event)" id="barca" tam="2" direccio="H"> <br>
-            <img src="Media/Battleship.png" alt="" draggable="true" ondragstart="drag(event)" id="battleship" tam="3" direccio="H"> <br>
-            <img src="Media/Destroyer.png" alt="" draggable="true" ondragstart="drag(event)" id="destroyer" tam="4" direccio="H"> <br>
-            <img src="Media/Portaaviones.png" alt="" draggable="true" ondragstart="drag(event)" id="portaaviones" tam="5" direccio="H"> <br>
-            <img src="Media/BarcaV.png" alt="" draggable="true" ondragstart="drag(event)" id="barca" tam="2" direccio="V">
-            <img src="Media/BattleshipV.png" alt="" draggable="true" ondragstart="drag(event)" id="battleship" tam="3" direccio="V">
-            <img src="Media/DestroyerV.png" alt="" draggable="true" ondragstart="drag(event)" id="destroyer" tam="4" direccio="V">
+            <img src="Media/Barca.png" alt="" draggable="true" ondragstart="drag(event)" id="barca" tam="2" direccio="H">
+            <img src="Media/BarcaV.png" alt="" draggable="true" ondragstart="drag(event)" id="barca" tam="2" direccio="V"> <br>
+            <img src="Media/Battleship.png" alt="" draggable="true" ondragstart="drag(event)" id="battleship" tam="3" direccio="H"> 
+            <img src="Media/BattleshipV.png" alt="" draggable="true" ondragstart="drag(event)" id="battleship" tam="3" direccio="V"> <br>
+            <img src="Media/Destroyer.png" alt="" draggable="true" ondragstart="drag(event)" id="destroyer" tam="4" direccio="H">
+            <img src="Media/DestroyerV.png" alt="" draggable="true" ondragstart="drag(event)" id="destroyer" tam="4" direccio="V"> <br>
+            <img src="Media/Portaaviones.png" alt="" draggable="true" ondragstart="drag(event)" id="portaaviones" tam="5" direccio="H"> 
             <img src="Media/PortaavionesV.png" alt="" draggable="true" ondragstart="drag(event)" id="portaaviones" tam="5" direccio="V"> <br>
         </div>
-        <div>
-            <div id="a">
-                <h2>Tauler teu</h2>
-            </div>
+        <div id="a">
+            <img src="Media/cartell3.png" id="cartell2">
             <div id="player_board"></div>
         </div>
-        <div>
-            <div id="b">
-                <h2>Tauler de la IA</h2>
-            </div>
+        <div id="button_container">
+            <button id="neteja"></button> <br>
+            <button id="guarda"></button> <br>
+            <button id="start"></button> <br>
+        </div>
+        <div id="b">
+            <img src="Media/cartell4.png" id="cartell2">
             <div id="computer_board"></div>
         </div>
-    </div>
-    <div id="button_container">
-        <button id="neteja">Netejar tauler</button>
-        <button id="guarda">Guarda</button>
-        <button id="start">Començar Joc</button>
     </div>
     <script src="DragDrop.js"></script>
     <script src="audio.js"></script>
